@@ -1,6 +1,10 @@
 import {createContext , useState} from 'react';
-import Navbar from './navbar/Navbar';
-import MenuBar from './menubar/MenuBar';
+import { Routes , Route } from 'react-router-dom';
+// import Header from './Header';
+import LoginPage from './components/Login/LoginPage';
+import RegisterPage from './components/Register/RegisterPage';
+import MainPage from './components/MainPage';
+import "./styles/App.css"
 // import RegularBtn from './common/RegularBtn';
 // import Toggle from './common/Toggle';
 interface Theme{
@@ -26,8 +30,14 @@ function App() {
   return (
     <>
     <Theme.Provider value={{isDark , handleDarkMood}}>
-      <Navbar />
-      <MenuBar />
+      <Routes>
+        <Route path='/login' element = {<LoginPage />}/>
+        <Route path='/register' element = {<RegisterPage />}/>
+        
+      </Routes>
+      <MainPage />
+      {/* <LoginPage /> */}
+      {/* <RegisterPage/> */}
 
 
     </Theme.Provider>
