@@ -1,0 +1,8 @@
+.loginFormBgDark {
+    background: url("../../public/LoginBgDark.jpg");
+    background-size: cover;
+}
+.loginFormBgLight {
+    background: url("../../public/LoginBgLight.jpeg");
+    background-size: cover;
+}
