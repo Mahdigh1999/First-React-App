@@ -18,13 +18,13 @@ function Menu({menuIsOpen , onClose}:Props) {
     "relative text-xs  xl:text-lg lg:text-sm py-2 w-full font-mono before:rounded-lg before:bottom-0 before:left:0 before:border-2 before:transition-all before:delay-900  before:absolute before:content(' ')";
   const mobileStylesMenuHolderCommonPart = !menuIsOpen
     ? "left-[-500%] " +
-      " top-0 fixed min-[720px]:sticky rounded-lg border py-2 min-[720px]:w-[fit-content] w-full h-auto transition-[left] delay-900"
+      "z-50 top-0 fixed min-[720px]:sticky rounded-lg border py-2 min-[720px]:w-[fit-content] w-full h-auto transition-[left] delay-900"
     : "left-[-12px] " +
-      "top-0 fixed min-[720px]:sticky rounded-lg border py-2 min-[720px]:w-[fit-content] w-full h-auto  transition-[left] delay-900";
+      "z-50 top-0 fixed min-[720px]:sticky rounded-lg border py-2 min-[720px]:w-[fit-content] w-full h-auto  transition-[left] delay-900";
 
   const mobileStylesMenuHolder = isDark
     ? mobileStylesMenuHolderCommonPart +
-      " bg-slate-950 min-[720px]:border-none  border-gray-600"
+      " bg-slate-950 min-[720px]:border-none   border-gray-600"
     : mobileStylesMenuHolderCommonPart +
       " bg-gray-100 min-[720px]:border-none  border-gray-300";
   const mobileStylesNavlinks =

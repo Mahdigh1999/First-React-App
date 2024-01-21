@@ -3,6 +3,9 @@ import { useContext, useState } from "react";
 import Input from "../common/inputs/Input";
 import CheckBoxInput from "../common/inputs/CheckBoxInput";
 import RegularBtn from "../common/RegularBtn";
+import { userSchema } from "../../validations/RgisterValidation";
+import { transformYupErrorsIntoObject } from "../../utils/transformYupErrorsIntoObject";
+
 type Account<T> = {
   firstName: T;
   lastName: T;
@@ -20,11 +23,26 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
-  // const [error , setError] = useState({username:'' , password: ''})
+  const [error, setError] = useState<Record<string, string>>({});
+  const validate = async () => {
+    try {
+      const result = await userSchema.validate(account, { abortEarly: false });
+      console.log(result);
+    } catch (err: any) {
+      const validationErrors = transformYupErrorsIntoObject(err);
+      setError(validationErrors);
+    }
+    return await userSchema.isValid(account);
+  };
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // const result = await  userSchema.validate(account,{abortEarly:false}).catch(e => console.log(e));
+    validate();
+    const result = validate();
+    if (!result) {
+      console.log("No Registered");
+      return;
+    }
+    console.log("Registered");
 
     // console.log(result);
   };
@@ -32,7 +50,14 @@ function Register() {
     const { name, value } = target;
 
     const acc: Account<string> = { ...account };
-    acc[name] = value;
+    if (
+      name == "username" ||
+      name == "firstName" ||
+      name == "lastName" ||
+      name == "password" ||
+      name == "confirmPassword"
+    )
+      acc[name] = value;
     // console.log(typeof name ,name);
     console.log(acc);
     setAccount(acc);
@@ -56,6 +81,7 @@ function Register() {
         value={account.firstName}
         className="mb-5 w-[48%] float-left"
         name="firstName"
+        error={error.firstName}
       />
       <Input
         label="Last Name"
@@ -66,6 +92,7 @@ function Register() {
         value={account.lastName}
         className="mb-5  w-[48%] float-right "
         name="lastName"
+        error={error.lastName}
       />
       <Input
         label="Your Email"
@@ -76,6 +103,7 @@ function Register() {
         value={account.username}
         className="mb-5 clear-both"
         name="username"
+        error={error.username}
       />
       <Input
         label="Your Password"
@@ -86,6 +114,7 @@ function Register() {
         value={account.password}
         className="mb-5"
         name="password"
+        error={error.password}
       />
       <Input
         label="Confirm Your Password"
@@ -96,6 +125,7 @@ function Register() {
         value={account.confirmPassword}
         className="mb-5"
         name="confirmPassword"
+        error={error.confirmPassword}
       />
 
       <CheckBoxInput label="Remember Me" />

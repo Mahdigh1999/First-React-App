@@ -9,6 +9,8 @@ import { Theme } from "../../App";
 import { useContext } from "react";
 import Like from "./Like";
 import { Fragment } from "react";
+
+
 type Props = {
   imageUrl: string;
   platforms: string[];
@@ -28,6 +30,9 @@ const getPlatformIcons = (list: string[]) => {
         listOfPlatforIcons.push(<ImWindows8 />);
         break;
       case "macos":
+        listOfPlatforIcons.push(<GrApple />);
+        break;
+      case "ios":
         listOfPlatforIcons.push(<GrApple />);
         break;
       case "android":
@@ -64,7 +69,7 @@ function GameCard({
     <div
       className={
         (isDark ? "gameCardShadow " : "shadow-lg ") +
-        " min-[720px]:h-[350px] min-[720px]:w-[280px] min-[480px]:h-[fit-content] min-[480px]:w-[180px]  h-[330px] w-[250px]  grow overflow-hidden rounded-md"
+        " min-[720px]:h-[350px] min-[720px]:w-[280px] min-[480px]:h-[fit-content] min-[480px]:w-[180px]  h-[330px] w-[250px]   overflow-hidden rounded-md"
       }
     >
       <div className="h-[50%] w-full border-b border-gray-500  overflow-hidden ">
@@ -83,8 +88,8 @@ function GameCard({
           </div>
           <span
             className={
-              (isDark ? "bg-gray-800" : "bg-gray-300") +
-              " float-right border border-gray-500 px-2 rounded-md bg-gray-800 py-1 text-xs"
+              (isDark ? " bg-gray-800 " : " bg-gray-300 ") +
+              " float-right border border-gray-500 px-2 rounded-md py-1 text-xs select-none"
             }
           >
             {stock}
