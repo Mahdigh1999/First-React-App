@@ -1,3 +1,8 @@
+
+
+
+
+
 const AllGames = [
     {//1
         id:"00W" ,
@@ -343,7 +348,7 @@ const AllGames = [
         type:"3D",
         platforms:[ "Windows" ] ,
         stock:60 ,
-        genres:[ "Shooting" , "Battleroyal" , "Survival" ,"Ricing"] ,
+        genres:[ "Shooting" , "Battleroyal" , "Survival" ,"Racing"] ,
         image : '../FakeData/MainImages/Pubg.jpg',
         price:6.69,
         like:true ,
@@ -547,7 +552,7 @@ const AllGames = [
         type:"3D",
         platforms:[ "Windows" , "Ps" , "Xbox" ] ,
         stock:247 ,
-        genres:[ "Sport" , "Ricing" , ] ,
+        genres:[ "Sport" , "Racing" , ] ,
         image : '../FakeData/MainImages/NeedForSpeed.jpg',
         price:49.99,
         like:true ,
