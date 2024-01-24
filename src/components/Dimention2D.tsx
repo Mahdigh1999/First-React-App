@@ -2,7 +2,11 @@ import { useEffect, useState } from "react";
 import { get2DGames } from "../services/fakeGameServices";
 import GameCard from "./common/GameCard";
 import { useSearch } from "../App";
-const Dimention2D = () => {
+type Props = {
+  open:() => void
+}
+const Dimention2D = ({open}:Props) => {
+  open();
   const [_2DGames, set_2DGamges] = useState(get2DGames());
     useEffect(() => {
         set_2DGamges(get2DGames());

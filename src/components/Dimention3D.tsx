@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import { get3DGames } from "../services/fakeGameServices";
 import GameCard from "./common/GameCard";
 import { useSearch } from "../App";
-const Dimention3D = () => {
+type Props = {
+  open:() => void
+}
+
+const Dimention3D = ({open}:Props) => {
+  open();
   const [_3DGames, set_3DGamges] = useState(get3DGames());
   const { seacrhValue } = useSearch();
   useEffect(() => {
