@@ -11,6 +11,7 @@ type Account<T> = {
   lastName: T;
   username: T;
   password: T;
+  email:T
   confirmPassword: T;
 };
 
@@ -19,11 +20,17 @@ function Register() {
   const [account, setAccount] = useState<Account<string>>({
     firstName: "",
     lastName: "",
+    email:"",
     username: "",
     password: "",
     confirmPassword: "",
   });
   const [error, setError] = useState<Record<string, string>>({});
+  const [acceptPolicy , setAcceptPlocy] = useState<boolean>(false);
+  const handleAcceptPolicy = () => {
+    setAcceptPlocy(prev => !prev)
+  }
+
   const validate = async () => {
     try {
       const result = await userSchema.validate(account, { abortEarly: false });
@@ -52,6 +59,7 @@ function Register() {
     const acc: Account<string> = { ...account };
     if (
       name == "username" ||
+      name == "email" ||
       name == "firstName" ||
       name == "lastName" ||
       name == "password" ||
@@ -96,10 +104,21 @@ function Register() {
       />
       <Input
         label="Your Email"
-        id="username"
-        type="email"
+        id="email"
+        type="text"
         onChange={handleChange}
         placeholder="Email ... ?"
+        value={account.email}
+        className="mb-5 clear-both"
+        name="email"
+        error={error.email}
+      />
+      <Input
+        label="Your Username"
+        id="username"
+        type="text"
+        onChange={handleChange}
+        placeholder="Username ... ?"
         value={account.username}
         className="mb-5 clear-both"
         name="username"
@@ -128,8 +147,8 @@ function Register() {
         error={error.confirmPassword}
       />
 
-      <CheckBoxInput label="Remember Me" />
-      <RegularBtn>Register</RegularBtn>
+      <CheckBoxInput checked = {acceptPolicy} setChecked = {handleAcceptPolicy} label="Accepr Policy" />
+      <RegularBtn disable={!acceptPolicy}>Register</RegularBtn>
     </form>
   );
 }
