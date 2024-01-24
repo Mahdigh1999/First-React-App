@@ -71,10 +71,10 @@ function Menu({menuIsOpen , onClose}:Props) {
       </div>
       {renderNavlink("Home", "/")}
       {renderNavlink("2D-3D Games", "/2D-3DGames")}
-      {renderNavlink("Popular Games", "/popular")}
+      {renderNavlink("Game Musics", "/Game-Musics")}
       {renderNavlink("Companies", "/companies")}
       {renderNavlink("Posts", "/posts")}
-      {renderNavlink("Contact Us", "/contact-us")}
+
     </div>
   );
 }
