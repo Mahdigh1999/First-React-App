@@ -1,8 +1,12 @@
 import logo from "../../assets/logo.png"
-function Logo() {
+type Props = { 
+    className?:string;
+    logoClassName?:string;
+}
+function Logo({className , logoClassName}:Props) {
     return (
-        <div>
-            <img src={logo} alt=""  className="h-8"/>
+        <div className={className ? className : ""}>
+            <img src={logo} alt=""  className={logoClassName? logoClassName : " h-8 "}/>
         </div>
     );
 }
