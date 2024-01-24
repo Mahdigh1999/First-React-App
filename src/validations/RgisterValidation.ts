@@ -11,9 +11,13 @@ export const userSchema = Yup.object({
     .max(12, "Most less than 12 char")
     .min(3, "Most more than 3 char")
     .required("Name box is Empty"),
-  username: Yup.string()
+  email: Yup.string()
     .email("It isn't Email type")
     .required("Email Box is Empty"),
+  username: Yup.string()
+    .min(5, "Minimum Size is 5")
+    .max(20,"Maximum Size is 20")
+    .required("UserName Box is Empty"),
   password: Yup.string()
     .matches(
       RegExp,
